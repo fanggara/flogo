@@ -1,0 +1,28 @@
+{
+  "name": "flogo-ope-getoffers",
+  "type": "flogo:activity",
+  "display": {
+    "category": "OPE",
+    "visible": true,
+    "description": "This activity invoke ope rest api "
+  },
+  "version": "1.0.0",
+  "title": "OPE GetOffers Invoke",
+  "description": "Invokes a OPE GetOffers REST API",
+  "homepage": "https://github.com/fanggara/flogo/tree/master/activity/ope/getoffers",
+  "ref": "github.com/fanggara/flogo/activity/ope/getoffers",
+  "settings": [
+    {
+      "name": "uri",
+      "type": "string",
+      "description": "The URI of the service to invoke"
+    }
+  ],
+  "input": [
+    {
+      "name": "content",
+      "type": "any",
+      "description": "The message content to send. This is only used in POST, PUT, and PATCH"
+    }
+  ]
+}
