@@ -1,21 +1,39 @@
 package getoffers
 
+import "github.com/project-flogo/core/data/coerce"
+
 type Settings struct {
-	Uri		string		`md:"uri"`  	// The URI of the service to invoke
+	ASetting string `md:"aSetting,required"`
 }
 
 type Input struct {
-	Content	interface{}	`md:"content"`	// The message content to send. This is only used in POST, PUT, and PATCH
+	AnInput string `md:"anInput,required"`
 }
 
-func (i *Input) ToMap() map[string]interface{} {
+func (r *Input) FromMap(values map[string]interface{}) error {
+	strVal, _ := coerce.ToString(values["anInput"])
+	r.AnInput = strVal
+	return nil
+}
+
+func (r *Input) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"content":     i.Content,
+		"anInput": r.AnInput,
 	}
 }
 
-func (i *Input) FromMap(values map[string]interface{}) error {
-	i.Content = values["content"]
+type Output struct {
+	AnOutput string `md:"anOutput"`
+}
 
+func (o *Output) FromMap(values map[string]interface{}) error {
+	strVal, _ := coerce.ToString(values["anOutput"])
+	o.AnOutput = strVal
 	return nil
+}
+
+func (o *Output) ToMap() map[string]interface{} {
+	return map[string]interface{}{
+		"anOutput": o.AnOutput,
+	}
 }

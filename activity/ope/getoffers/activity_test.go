@@ -16,10 +16,20 @@ func TestRegister(t *testing.T) {
 	assert.NotNil(t, act)
 }
 
-func TestSettings(t *testing.T) {
-	settings := &Settings{Uri: "http://petstore.swagger.io/v2/pet"}
+func TestEval(t *testing.T) {
 
-	iCtx := test.NewActivityInitContext(settings, nil)
-	_, err := New(iCtx)
+	act := &Activity{}
+	tc := test.NewActivityContext(act.Metadata())
+	input := &Input{AnInput: "test"}
+	err := tc.SetInputObject(input)
 	assert.Nil(t, err)
+
+	done, err := act.Eval(tc)
+	assert.True(t, done)
+	assert.Nil(t, err)
+
+	output := &Output{}
+	err = tc.GetOutputObject(output)
+	assert.Nil(t, err)
+	assert.Equal(t, "test", output.AnOutput)
 }

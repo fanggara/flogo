@@ -13,16 +13,22 @@
   "ref": "github.com/fanggara/flogo/activity/ope/getoffers",
   "settings": [
     {
-      "name": "uri",
+      "name": "aSetting",
       "type": "string",
-      "description": "The URI of the service to invoke"
+      "required": true
     }
   ],
   "input": [
     {
-      "name": "content",
-      "type": "any",
-      "description": "The message content to send. This is only used in POST, PUT, and PATCH"
+      "name": "anInput",
+      "type": "string",
+      "required": true
+    }
+  ],
+  "output": [
+    {
+      "name": "anOutput",
+      "type": "string"
     }
   ]
 }
