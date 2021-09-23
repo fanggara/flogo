@@ -12,7 +12,7 @@ func init() {
 var activityMd = activity.ToMetadata(&Settings{}, &Input{}, &Output{})
 
 //New optional factory method, should be used if one activity instance per configuration is desired
-func New(ctx activity.InitContext) (activity.Activity, error) {
+func New(ctx activity.InitContext, settings ...interface{}) (activity.Activity, error) {
 
 	s := &Settings{}
 	err := metadata.MapToStruct(ctx.Settings(), s, true)
