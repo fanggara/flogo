@@ -56,6 +56,8 @@ func (a *MyActivity) Eval(ctx activity.Context) (done bool, err error) {
 		return false, err
 	}
 	output := &Output{Products: results}
+
+	ctx.Logger().Infof("Output: %v", output)
 	err = ctx.SetOutputObject(output)
 	if err != nil {
 		return false, err
