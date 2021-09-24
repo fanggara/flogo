@@ -10,7 +10,7 @@ import (
 
 func TestRegister(t *testing.T) {
 
-	ref := activity.GetRef(&Activity{})
+	ref := activity.GetRef(&MyActivity{})
 	act := activity.Get(ref)
 
 	assert.NotNil(t, act)
@@ -18,7 +18,7 @@ func TestRegister(t *testing.T) {
 
 func TestEval(t *testing.T) {
 
-	act := &Activity{}
+	act := &MyActivity{}
 	tc := test.NewActivityContext(act.Metadata())
 	input := &Input{AnInput: "test"}
 	err := tc.SetInputObject(input)
