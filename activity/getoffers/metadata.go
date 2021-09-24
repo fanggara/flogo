@@ -7,33 +7,47 @@ type Settings struct {
 }
 
 type Input struct {
-	AnInput string `md:"anInput,required"`
+	BusinessTransactionID string `md:"businessTransactionID"`
+	Segments map[string]interface{} `md:"segments"`
 }
 
 func (r *Input) FromMap(values map[string]interface{}) error {
-	strVal, _ := coerce.ToString(values["anInput"])
-	r.AnInput = strVal
+	trxID, err := coerce.ToString(values["businessTransactionID"])
+	if err != nil {
+		return err
+	}
+	r.BusinessTransactionID = trxID
+	segments,err := coerce.ToObject(values["segments"])
+	if err != nil {
+		return err
+	}
+	r.Segments = segments
+
 	return nil
 }
 
 func (r *Input) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"anInput": r.AnInput,
+		"businessTransactionID": r.BusinessTransactionID,
+		"segments" : r.Segments,
 	}
 }
 
 type Output struct {
-	AnOutput string `md:"anOutput"`
+	Products map[string]interface{}  `md:"products"`
 }
 
 func (o *Output) FromMap(values map[string]interface{}) error {
-	strVal, _ := coerce.ToString(values["anOutput"])
-	o.AnOutput = strVal
+	products, err := coerce.ToObject(values["products"])
+	if err != nil {
+		return err
+	}
+	o.Products = products
 	return nil
 }
 
 func (o *Output) ToMap() map[string]interface{} {
 	return map[string]interface{}{
-		"anOutput": o.AnOutput,
+		"products": o.Products,
 	}
 }

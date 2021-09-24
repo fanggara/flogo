@@ -1,6 +1,7 @@
 package getoffers
 
 import (
+	"github.com/mitchellh/mapstructure"
 	"github.com/project-flogo/core/activity"
 	"github.com/project-flogo/core/data/metadata"
 )
@@ -45,13 +46,38 @@ func (a *MyActivity) Eval(ctx activity.Context) (done bool, err error) {
 		return true, err
 	}
 
-	ctx.Logger().Debugf("Input: %s", input.AnInput)
+	ctx.Logger().Infof("TransactionID: %s", input.BusinessTransactionID)
+	ctx.Logger().Infof("Segments: %v", input.Segments)
 
-	output := &Output{AnOutput: input.AnInput}
+	prods := createProducts()
+	results := make(map[string]interface{})
+	err = mapstructure.Decode(prods, &results)
+	if err != nil {
+		return false, err
+	}
+	output := &Output{Products: results}
 	err = ctx.SetOutputObject(output)
 	if err != nil {
-		return true, err
+		return false, err
 	}
 
 	return true, nil
+}
+
+type eligible struct{
+	products []product 
+}
+
+type product struct{
+	id string 
+	recordType string 
+	pco []product
+}
+
+func createProducts() (prods eligible){
+	prods = eligible{products: make([]product, 0)}
+
+	prod := product{id: "002992",recordType: "PO",pco: []product{{id: "MR_123",recordType: "MR"}}}
+	prods.products = append(prods.products, prod)
+	return
 }
