@@ -27,10 +27,6 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 	return act, nil
 }
 
-func NewActivity(metadata *activity.Metadata) activity.Activity {
-	return &MyActivity{}
-}
-
 // MyActivity is an sample MyActivity that can be used as a base to create a custom activity
 type MyActivity struct {
 }
