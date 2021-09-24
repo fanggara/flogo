@@ -6,13 +6,13 @@ import (
 )
 
 func init() {
-	_ = activity.Register(&MyActivity{},New) //activity.Register(&Activity{}, New) to create instances using factory method 'New'
+	_ = activity.Register(&MyActivity{},NewActivity) //activity.Register(&Activity{}, New) to create instances using factory method 'New'
 }
 
 var activityMd = activity.ToMetadata(&Settings{}, &Input{}, &Output{})
 
 //New optional factory method, should be used if one activity instance per configuration is desired
-func New(ctx activity.InitContext) (activity.Activity, error) {
+func NewActivity(ctx activity.InitContext) (activity.Activity, error) {
 
 	s := &Settings{}
 	err := metadata.MapToStruct(ctx.Settings(), s, true)
