@@ -13,21 +13,23 @@
   "settings": [
     {
       "name": "aSetting",
-      "type": "string",
-      "required": true
+      "type": "string"
     }
   ],
   "input": [
     {
-      "name": "anInput",
-      "type": "string",
-      "required": true
+      "name": "businessTransactionID",
+      "type": "string"
+    },
+    {
+      "name": "segments",
+      "type": "object"
     }
   ],
   "output": [
     {
-      "name": "anOutput",
-      "type": "string"
+      "name": "products",
+      "type": "object"
     }
   ]
 }
