@@ -2,16 +2,17 @@ package getoffers
 
 import (
 	"github.com/project-flogo/core/activity"
+	"github.com/project-flogo/core/data/metadata"
 )
 
 func init() {
-	_ = activity.Register(&MyActivity{}) //activity.Register(&Activity{}, New) to create instances using factory method 'New'
+	_ = activity.Register(&MyActivity{},New) //activity.Register(&Activity{}, New) to create instances using factory method 'New'
 }
 
 var activityMd = activity.ToMetadata(&Settings{}, &Input{}, &Output{})
 
 //New optional factory method, should be used if one activity instance per configuration is desired
-/*func NewActivity(ctx activity.InitContext) (activity.Activity, error) {
+func New(ctx activity.InitContext) (activity.Activity, error) {
 
 	s := &Settings{}
 	err := metadata.MapToStruct(ctx.Settings(), s, true)
@@ -24,7 +25,7 @@ var activityMd = activity.ToMetadata(&Settings{}, &Input{}, &Output{})
 	act := &MyActivity{} //add aSetting to instance
 
 	return act, nil
-}*/
+}
 
 // MyActivity is an sample MyActivity that can be used as a base to create a custom activity
 type MyActivity struct {
