@@ -1,7 +1,8 @@
 package getoffers
 
 import (
-	"github.com/mitchellh/mapstructure"
+	"encoding/json"
+
 	"github.com/project-flogo/core/activity"
 	"github.com/project-flogo/core/data/metadata"
 )
@@ -51,7 +52,12 @@ func (a *MyActivity) Eval(ctx activity.Context) (done bool, err error) {
 
 	prods := createProducts()
 	results := make(map[string]interface{})
-	err = mapstructure.Decode(prods, &results)
+	data,err := json.Marshal(prods)
+	if err != nil {
+		return false, err
+	}
+
+	err = json.Unmarshal(data, &results)
 	if err != nil {
 		return false, err
 	}
@@ -67,19 +73,19 @@ func (a *MyActivity) Eval(ctx activity.Context) (done bool, err error) {
 }
 
 type Eligible struct{
-	Products []Product 
+	Products []Product `json:"products"`
 }
 
 type Product struct{
-	id string 
-	recordType string 
-	pco []Product
+	ID string `json:"id"`
+	Type string `json:"type"`
+	PCO []Product `json:"pco"`
 }
 
 func createProducts() (prods Eligible){
 	prods = Eligible{Products: make([]Product, 0)}
 
-	prod := Product{id: "002992",recordType: "PO",pco: []Product{{id: "MR_123",recordType: "MR"}}}
+	prod := Product{ID: "002992",Type: "PO",PCO: []Product{{ID: "MR_123",Type: "MR"}}}
 	prods.Products = append(prods.Products, prod)
 	return
 }

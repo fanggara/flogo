@@ -5,7 +5,20 @@ import (
 	"testing"
 
 	"github.com/mitchellh/mapstructure"
+	"github.com/project-flogo/core/data/coerce"
 )
+
+func TestCoerce(t *testing.T){
+	prods := createProducts()
+	results := make(map[string]interface{})
+	err := mapstructure.Decode(prods, &results)
+	if err != nil {
+		t.Fatal(err)
+	}
+	output := &Output{Products: results}
+
+	t.Log(output.ToMap())
+}
 
 func TestMapStructure(t *testing.T){
 	prods:= createProducts()
@@ -30,6 +43,12 @@ func TestMapUnmarshal(t *testing.T){
 		t.Fatal(err)
 	}
 	t.Logf("%+v\n",result)
+	
+	test,err := coerce.ToArray(prods.Products)
+	if err != nil {
+		t.Fatal(err)
+	}
+	t.Log(test)
 }
 
 func BenchmarkMapStructure(b *testing.B){
