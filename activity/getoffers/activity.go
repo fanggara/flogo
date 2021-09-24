@@ -66,20 +66,20 @@ func (a *MyActivity) Eval(ctx activity.Context) (done bool, err error) {
 	return true, nil
 }
 
-type eligible struct{
-	products []product 
+type Eligible struct{
+	Products []Product 
 }
 
-type product struct{
+type Product struct{
 	id string 
 	recordType string 
-	pco []product
+	pco []Product
 }
 
-func createProducts() (prods eligible){
-	prods = eligible{products: make([]product, 0)}
+func createProducts() (prods Eligible){
+	prods = Eligible{Products: make([]Product, 0)}
 
-	prod := product{id: "002992",recordType: "PO",pco: []product{{id: "MR_123",recordType: "MR"}}}
-	prods.products = append(prods.products, prod)
+	prod := Product{id: "002992",recordType: "PO",pco: []Product{{id: "MR_123",recordType: "MR"}}}
+	prods.Products = append(prods.Products, prod)
 	return
 }
