@@ -1,7 +1,12 @@
 {
   "name": "flogo-ope-getoffers",
   "type": "flogo:activity",
-  "version": "0.0.1",
+  "display": {
+    "category": "OPE",
+    "visible": true,
+    "description": "This activity invoke ope rest api "
+  },
+  "version": "1.0.0",
   "title": "OPE GetOffers Invoke",
   "description": "Invokes a OPE GetOffers REST API",
   "ref": "github.com/fanggara/flogo/activity/getoffers",
