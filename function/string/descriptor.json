@@ -4,6 +4,7 @@
   "version": "0.10.0",
   "title": "stringFunctions",
   "description": "stringFunctions",
+  "ref": "github.com/fanggara/flogo/function/string",
   "functions": [
     {
       "name": "substring",
