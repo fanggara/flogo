@@ -1,0 +1,89 @@
+{
+  "name": "string",
+  "type": "flogo:function",
+  "version": "0.10.0",
+  "title": "stringFunctions",
+  "description": "stringFunctions",
+  "functions": [
+    {
+      "name": "substring",
+      "description": "Extract substring from source string with start index and end index (exclusive). If end > length of source, function will return substring(start,len(source))",
+      "example": "string.substring(\"Hello World\", 0, 5)=> Hello",
+      "args": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "start",
+          "type": "int"
+        },
+        {
+          "name": "end",
+          "type": "int"
+        }
+      ],
+      "return": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "left",
+      "description": "Trim substring from source string from left with provided size",
+      "example": "string.left(\"Hello World\", 5)=> Hello",
+      "args": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "int"
+        }
+      ],
+      "return": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "right",
+      "description": "Trim substring from source string from right with provided size",
+      "example": "string.right(\"Hello World\", 5)=> World",
+      "args": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "size",
+          "type": "int"
+        }
+      ],
+      "return": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "pad",
+      "description": "Pad source string up to provided length. If justify=\"left\", source string will be padded \" \". If justify=\"right\", source string will be padded with 0",
+      "example": "string.pad(\"123\", 5, \"right\")=> 00123",
+      "args": [
+        {
+          "name": "source",
+          "type": "string"
+        },
+        {
+          "name": "length",
+          "type": "int"
+        },
+        {
+          "name": "justify",
+          "type": "string"
+        }
+      ],
+      "return": {
+        "type": "string"
+      }
+    }
+  ]
+}
