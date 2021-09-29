@@ -17,7 +17,7 @@
     },
     {
       "name": "timeoutMs",
-      "type": "int"
+      "type": "number"
     }
   ],
   "input": [
@@ -43,7 +43,7 @@
     },
     {
       "name": "segments",
-      "type": "object"
+      "type": "array"
     },
     {
       "name": "returnIneligibleProducts",
@@ -65,7 +65,7 @@
   "output": [
     {
       "name": "menu",
-      "type": "object"
+      "type": "array"
     }
   ]
 }
