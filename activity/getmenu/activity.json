@@ -1,5 +1,5 @@
 {
-  "name": "flogo-ope-getoffers",
+  "name": "flogo-ope-getmenu",
   "type": "flogo:activity",
   "display": {
     "category": "OPE",
@@ -7,7 +7,7 @@
     "description": "This activity invoke ope rest api and map to menu tree structure"
   },
   "version": "1.0.0",
-  "title": "OPE GetOffers Invoke",
+  "title": "OPE GetMenu Invoke",
   "description": "Invokes a OPE GetOffers REST API and Maps to Menu Tree Structure",
   "ref": "github.com/fanggara/flogo/activity/getmeu",
   "settings": [
