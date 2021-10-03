@@ -9,8 +9,8 @@
   "version": "1.0.0",
   "title": "OPE MapMenu XML",
   "description": "This activity map menu tree structure to xml format",
-  "homepage": "https://github.com/fanggara/flogo/tree/master/activity/ope/mapmenu",
-  "ref": "github.com/fanggara/flogo/activity/ope/mapmenu",
+  "homepage": "https://github.com/fanggara/flogo/tree/master/OPE/activity/mapmenu",
+  "ref": "github.com/fanggara/flogo/OPE/activity/mapmenu",
   "settings": [],
   "input": [
     {
