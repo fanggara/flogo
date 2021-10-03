@@ -9,8 +9,8 @@
   "version": "1.0.0",
   "title": "OPE GetMenu Invoke",
   "description": "Invokes a OPE GetOffers REST API and Maps to Menu Tree Structure",
-  "homepage": "https://github.com/fanggara/flogo/tree/master/activity/getmenu",
-  "ref": "github.com/fanggara/flogo/activity/getmenu",
+  "homepage": "https://github.com/fanggara/flogo/tree/master/activity/ope/getmenu",
+  "ref": "github.com/fanggara/flogo/activity/ope/getmenu",
   "settings": [
     {
       "name": "opeEndpoint",
