@@ -9,16 +9,16 @@ type Settings struct {
 }
 
 type Input struct {
-	BusinessTransactionID 		string 					`md:"businessTransactionID"`
-	RequestControl 				map[string]interface{} 	`md:"requestControl"`
-	RecordTypes 				map[string]interface{} 	`md:"recordTypes"`
-	RecordSubTypes 				map[string]interface{} 	`md:"recordSubType"`
-	Promotions					map[string]interface{}	`md:"promotions"`
-	Segments 					interface{} 			`md:"segments"`
-	ReturnIneligibleProducts 	bool  					`md:"returnIneligibleProducts"`
-	ReturnBundleOfferings		bool  					`md:"returnBundleOfferings"`
-	ReturnPrices				bool  					`md:"returnPrices"`
-	ReturnProductInformation	bool  					`md:"returnProductInformation"`
+	BusinessTransactionID 		string 					`md:"businessTransactionID" json:"businessTransactionID"`
+	RequestControl 				map[string]interface{} 	`md:"requestControl" json:"requestControl"`
+	RecordTypes 				map[string]interface{} 	`md:"recordTypes" json:"recordTypes"`
+	RecordSubTypes 				map[string]interface{} 	`md:"recordSubType" json:"recordSubType"`
+	Promotions					map[string]interface{}	`md:"promotions" json:"promotions"`
+	Segments 					interface{} 			`md:"segments" json:"segments"`
+	ReturnIneligibleProducts 	bool  					`md:"returnIneligibleProducts" json:"returnIneligibleProducts"`
+	ReturnBundleOfferings		bool  					`md:"returnBundleOfferings" json:"returnBundleOfferings"`
+	ReturnPrices				bool  					`md:"returnPrices" json:"returnPrices"`
+	ReturnProductInformation	bool  					`md:"returnProductInformation" json:"returnProductInformation"`
 }
 
 func (r *Input) FromMap(values map[string]interface{}) error {
