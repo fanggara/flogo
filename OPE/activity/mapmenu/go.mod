@@ -1,4 +1,4 @@
-module github.com/fanggara/flogo/activity/ope/mapmenu
+module github.com/fanggara/flogo/OPE/activity/mapmenu
 
 go 1.17
 

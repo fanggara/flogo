@@ -10,7 +10,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/fanggara/flogo/activity/getmenu/model"
+	"github.com/fanggara/flogo/OPE/activity/getmenu/model"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/project-flogo/core/activity"
 	"github.com/project-flogo/core/data/metadata"

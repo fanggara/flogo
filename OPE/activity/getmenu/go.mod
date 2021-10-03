@@ -1,11 +1,11 @@
-module github.com/fanggara/flogo/activity/getmenu
+module github.com/fanggara/flogo/OPE/activity/getmenu
 
 go 1.17
 
 require (
 	github.com/json-iterator/go v1.1.12
 	github.com/project-flogo/core v1.5.0
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.7.0
 )
 
 require (
@@ -17,5 +17,5 @@ require (
 	go.uber.org/atomic v1.6.0 // indirect
 	go.uber.org/multierr v1.5.0 // indirect
 	go.uber.org/zap v1.16.0 // indirect
-	gopkg.in/yaml.v2 v2.2.2 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )

@@ -1,4 +1,4 @@
-module github.com/fanggara/flogo/activity/getoffers
+module github.com/fanggara/flogo/OPE/activity/getoffers
 
 go 1.17
 
