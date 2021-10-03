@@ -1,0 +1,59 @@
+{
+  "name": "flogo-ope-mapmenu",
+  "type": "flogo:activity",
+  "display": {
+    "category": "OPE",
+    "visible": true,
+    "description": "This activity map menu tree structure to xml format"
+  },
+  "version": "1.0.0",
+  "title": "OPE MapMenu XML",
+  "description": "This activity map menu tree structure to xml format",
+  "homepage": "https://github.com/fanggara/flogo/tree/master/activity/ope/mapmenu",
+  "ref": "github.com/fanggara/flogo/activity/ope/mapmenu",
+  "settings": [],
+  "input": [
+    {
+      "name": "transactionID",
+      "type": "string"
+    },
+    {
+      "name": "channel",
+      "type": "string"
+    },
+    {
+      "name": "statusCode",
+      "type": "string"
+    },
+    {
+      "name": "statusDescription",
+      "type": "string"
+    },
+    {
+      "name": "path",
+      "type": "string"
+    },
+    {
+      "name": "first",
+      "type": "string"
+    },
+    {
+      "name": "menu",
+      "type": "object"
+    },
+    {
+      "name": "next",
+      "type": "string"
+    },
+    {
+      "name": "backCode",
+      "type": "string"
+    }
+  ],
+  "output": [
+    {
+      "name": "xmlContent",
+      "type": "string"
+    }
+  ]
+}
