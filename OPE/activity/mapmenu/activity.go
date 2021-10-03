@@ -31,6 +31,7 @@ const(
 	elementAttrDataPID = "pid"
 	elementNameDataValue = "value"
 	elementAttrDataPriority = "priority"
+	dataCodeHeader = "0"
 )
 
 var activityMd = activity.ToMetadata(&Settings{}, &Input{}, &Output{})
@@ -74,7 +75,10 @@ func (a *OPEMapMenuActivity) Eval(ctx activity.Context) (done bool, err error) {
 		return true, err
 	}
 
-	ctx.Logger().Infof("Menu: %v", input.Menu)
+	if ctx.Logger().DebugEnabled(){
+		ctx.Logger().Infof("Input: %+v", input)
+	}
+	
 
 	doc := etree.NewDocument()
 	umbRoot := doc.CreateElement(elementNameUMB)
@@ -117,7 +121,7 @@ func (a *OPEMapMenuActivity) Eval(ctx activity.Context) (done bool, err error) {
 
 		if input.Header != "" {
 			data := menuElement.CreateElement(elementNameData)
-			data.CreateAttr(elementAttrDataCode, "0")
+			data.CreateAttr(elementAttrDataCode, dataCodeHeader)
 			data.SetText(input.Header)
 		}
 
@@ -140,11 +144,13 @@ func (a *OPEMapMenuActivity) Eval(ctx activity.Context) (done bool, err error) {
 	}
 
 	output := &Output{XMLContent: result}
-
-	ctx.Logger().Infof("Output: %v", output)
 	err = ctx.SetOutputObject(output)
 	if err != nil {
 		return false, err
+	}
+
+	if ctx.Logger().DebugEnabled(){
+		ctx.Logger().Debugf("Output: %+v", output)
 	}
 
 	return true, nil

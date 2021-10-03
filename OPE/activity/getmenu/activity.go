@@ -2,7 +2,6 @@ package getmenu
 
 import (
 	"bytes"
-	"encoding/json"
 	"errors"
 	"fmt"
 	"io/ioutil"
@@ -46,7 +45,7 @@ func New(ctx activity.InitContext) (activity.Activity, error) {
 	}
 
 	ctx.Logger().Debugf("OPE Endpoint: %s", s.OPEEndpoint)
-	ctx.Logger().Debugf("OPE Endpoint: %d", s.TimeoutMs)
+	ctx.Logger().Debugf("OPE Timeout: %d", s.TimeoutMs)
 
 	client := &http.Client{Timeout: time.Duration(s.TimeoutMs) * time.Millisecond}
 
@@ -69,38 +68,45 @@ func (a *OPEGetMenuActivity) Metadata() *activity.Metadata {
 
 // Eval implements api.Activity.Eval - Logs the Message
 func (a *OPEGetMenuActivity) Eval(ctx activity.Context) (done bool, err error) {
-
+	startTime := time.Now()
+	defer func(){
+		if done {
+			ctx.Logger().Infof("Successfully Invoke OPE Get Menu. Completed in %d ms", time.Since(startTime).Milliseconds())
+		}else{
+			ctx.Logger().Errorf("Error occurred while invoking OPE Get Menu: %+v. Completed in %d ms", err,time.Since(startTime).Milliseconds())
+		}	
+	}()
 	input := &Input{}
 	err = ctx.GetInputObject(input)
 	if err != nil {
-		return true, err
+		return 
 	}
 
-	ctx.Logger().Infof("TransactionID: %s", input.BusinessTransactionID)
-	ctx.Logger().Infof("RequestControl: %v", input.RequestControl)
-	ctx.Logger().Infof("RecordType: %v", input.RecordTypes)
-	ctx.Logger().Infof("RecordSubType: %v", input.RecordSubTypes)
-	ctx.Logger().Infof("Promotions: %v", input.Promotions)
-	ctx.Logger().Infof("Segments: %v", input.Segments)
+	if ctx.Logger().DebugEnabled(){
+		ctx.Logger().Debugf("Input: %+v", input)
+	}
 
-	data,err := json.Marshal(input)
+	data,err := a.json.Marshal(input)
 	if err != nil {
-		return false, err
+		return 
 	}
 
 	res,err := a.GetMenu(data)
 	if err != nil {
-		return false, err
+		return 
 	}
 	output := &Output{Menu: res}
 
-	ctx.Logger().Infof("Output: %v", output)
 	err = ctx.SetOutputObject(output)
 	if err != nil {
-		return false, err
+		return 
 	}
 
-	return true, nil
+	if ctx.Logger().DebugEnabled(){
+		ctx.Logger().Debugf("Output: %+v", output)
+	}
+	done = true
+	return 
 }
 
 func (a *OPEGetMenuActivity) GetMenu(reqRaw []byte)(interface{},error){
@@ -156,7 +162,6 @@ func (a *OPEGetMenuActivity) GetMenu(reqRaw []byte)(interface{},error){
 			for _,p := range pcoMap.([]interface{}){
 				
 				pidChild := p.(map[string]interface{})[mapFieldID].(string)
-				fmt.Println(pidChild)
 				if m,ok := menuList[pidChild];ok{
 					pcoItem = append(pcoItem, m)
 				}
@@ -170,6 +175,6 @@ func (a *OPEGetMenuActivity) GetMenu(reqRaw []byte)(interface{},error){
 		return result,nil
 	}
 	
-	return nil,errors.New("Failed to invoke OPE")
+	return nil,errors.New(fmt.Sprintf("Failed to invoke OPE with HTTP status: %d", resp.StatusCode))
 	
 }
