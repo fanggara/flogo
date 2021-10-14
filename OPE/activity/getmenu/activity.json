@@ -14,11 +14,24 @@
   "settings": [
     {
       "name": "opeEndpoint",
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "display": {
+        "description": "OPE GetOffers URL ",
+        "name": "URL",
+        "appPropertySupport": true
+      }
     },
     {
       "name": "timeoutMs",
-      "type": "number"
+      "type": "number",
+      "required": true,
+      "display": {
+        "description": "Timeout for OPE REST service in milliseconds. (Timeout=0, is indefinite)",
+        "name": "Timeout",
+        "appPropertySupport": true
+      },
+      "value": 4000
     }
   ],
   "input": [
